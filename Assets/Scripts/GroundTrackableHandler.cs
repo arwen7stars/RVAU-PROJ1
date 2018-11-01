@@ -5,17 +5,18 @@ using Vuforia;
 
 public class GroundTrackableHandler : DefaultTrackableEventHandler
 {
-    public MoleMovement moleMovement;
+    private bool renderingStarted = false;
+    private bool renderingStopped = false;
 
     protected override void OnTrackingFound()
     {
         base.OnTrackingFound();
 
-        moleMovement.SetRenderingStarted(true);
+        renderingStarted = true;
 
-        if (moleMovement.GetRenderingStopped())
+        if (renderingStopped)
         {
-            moleMovement.SetRenderingStopped(false);
+            renderingStopped = false;
         }
     }
 
@@ -23,6 +24,16 @@ public class GroundTrackableHandler : DefaultTrackableEventHandler
     {
         base.OnTrackingLost();
 
-        moleMovement.SetRenderingStopped(true);
+        renderingStopped = true;
+    }
+
+    public bool getRenderingStarted()
+    {
+        return renderingStarted;
+    }
+
+    public bool getRenderingStopped()
+    {
+        return renderingStopped;
     }
 }

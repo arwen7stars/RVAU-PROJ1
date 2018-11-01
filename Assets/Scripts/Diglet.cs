@@ -197,7 +197,6 @@ public class Diglet : MonoBehaviour {
 
     } // Descending
 
-
 	// y speed of diglet movement
 	public float SPEED;                             
 
@@ -211,7 +210,10 @@ public class Diglet : MonoBehaviour {
 	public float UPTIME;        
 
 	// chance (0 - 100) diglet will ascend (per second)
-	public int CHANCE;         
+	public int CHANCE;
+
+    // trackable handler
+    public GroundTrackableHandler trackableHandler;
 
 	// current state
 	private State state;    
@@ -235,7 +237,10 @@ public class Diglet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		state = state.update();
+
+        if (!trackableHandler.getRenderingStarted() || trackableHandler.getRenderingStopped())
+            return;
+
+        state = state.update();
 	}
 }
