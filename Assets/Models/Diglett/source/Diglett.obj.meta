@@ -13,7 +13,17 @@ ModelImporter:
     3300000: default
     4300000: default
     2186277476908879412: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DigdaDh
+    second: {fileID: 2100000, guid: 321b0a48b4652aa44a50e092c100d393, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DigdaEyeDh
+    second: {fileID: 2100002, guid: 321b0a48b4652aa44a50e092c100d393, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
@@ -85,7 +95,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

@@ -62,8 +62,6 @@ public class MoleMovement : MonoBehaviour
         {
             if (!coroutineStarted)
             {
-                Debug.Log("Started Coroutine!");
-
                 StartCoroutine(NumberGen());
                 coroutineStarted = true;
             }
@@ -131,8 +129,6 @@ public class MoleMovement : MonoBehaviour
         }
         else
         {
-            Debug.Log("Countdown over for mole " + moleIndex);
-
             countdownOngoing[moleIndex] = false;
             countdownOver[moleIndex] = true;
             countdownTimes[moleIndex] = 0f;
