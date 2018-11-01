@@ -24,20 +24,6 @@ public class HammerHandler : MonoBehaviour {
     {
         Debug.Log(collider.gameObject.tag);
 
-        Vector3 direction = collider.gameObject.transform.position - transform.position;
-        if (Vector3.Dot(transform.forward, direction) > 0)
-        {
-            print("Back");
-        }
-        if (Vector3.Dot(transform.forward, direction) < 0)
-        {
-            print("Front");
-        }
-        if (Vector3.Dot(transform.forward, direction) == 0)
-        {
-            print("Side");
-        }
-
         if (collider.gameObject.tag == DIGLETT_TAG)
             score.incrementScore();
     }

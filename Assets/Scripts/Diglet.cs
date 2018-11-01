@@ -51,11 +51,15 @@ public class Diglet : MonoBehaviour {
 		{
 			lastCheck = -1;
 			ascendTime = -1;
-		}
+
+            diglet.diglettCollider.enabled = false;
+        }
 
 		public override State next()
         {
-			return new Ascending(diglet);
+            diglet.diglettCollider.enabled = true;
+
+            return new Ascending(diglet);
         }
 
 		public override State update()
@@ -97,9 +101,9 @@ public class Diglet : MonoBehaviour {
 			: base(diglet)
 		{
 			diglet.currentUptime = 0;
-		}
+        }
 
-		public override State next()
+        public override State next()
         {
 			return new Descending(diglet);
         }
@@ -214,6 +218,9 @@ public class Diglet : MonoBehaviour {
 
     // trackable handler
     public GroundTrackableHandler trackableHandler;
+
+    // diglett collider
+    public BoxCollider diglettCollider;
 
 	// current state
 	private State state;    

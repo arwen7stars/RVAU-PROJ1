@@ -361,6 +361,7 @@ MonoBehaviour:
   UPTIME: 1500
   CHANCE: 15
   trackableHandler: {fileID: 1450369757}
+  diglettCollider: {fileID: 216572799}
 --- !u!1001 &320730234
 Prefab:
   m_ObjectHideFlags: 0
@@ -485,6 +486,7 @@ MonoBehaviour:
   UPTIME: 1500
   CHANCE: 15
   trackableHandler: {fileID: 1450369757}
+  diglettCollider: {fileID: 320730237}
 --- !u!1 &453152298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1729230074943304, guid: 70392fe6c4bfa27459d22e39b94a4fb0,
@@ -735,6 +737,7 @@ MonoBehaviour:
   UPTIME: 1500
   CHANCE: 15
   trackableHandler: {fileID: 1450369757}
+  diglettCollider: {fileID: 612672087}
 --- !u!1 &615329373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,6 +1017,7 @@ MonoBehaviour:
   UPTIME: 1500
   CHANCE: 15
   trackableHandler: {fileID: 1450369757}
+  diglettCollider: {fileID: 665496990}
 --- !u!1001 &755230761
 Prefab:
   m_ObjectHideFlags: 0
@@ -1656,6 +1660,7 @@ MonoBehaviour:
   UPTIME: 1500
   CHANCE: 15
   trackableHandler: {fileID: 1450369757}
+  diglettCollider: {fileID: 1270935546}
 --- !u!43 &1277717450
 Mesh:
   m_ObjectHideFlags: 0
@@ -1935,6 +1940,7 @@ MonoBehaviour:
   UPTIME: 1500
   CHANCE: 15
   trackableHandler: {fileID: 1450369757}
+  diglettCollider: {fileID: 1358209012}
 --- !u!1001 &1361211000
 Prefab:
   m_ObjectHideFlags: 0
@@ -2728,6 +2734,7 @@ MonoBehaviour:
   UPTIME: 1500
   CHANCE: 15
   trackableHandler: {fileID: 1450369757}
+  diglettCollider: {fileID: 1752653814}
 --- !u!4 &1752837355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4844503413070662, guid: e2d14ee45ea58b6459a16a5536fa546e,
@@ -3053,6 +3060,7 @@ MonoBehaviour:
   UPTIME: 1500
   CHANCE: 15
   trackableHandler: {fileID: 1450369757}
+  diglettCollider: {fileID: 2024651135}
 --- !u!1 &2066304702
 GameObject:
   m_ObjectHideFlags: 0
@@ -3294,3 +3302,4 @@ MonoBehaviour:
   UPTIME: 1500
   CHANCE: 15
   trackableHandler: {fileID: 1450369757}
+  diglettCollider: {fileID: 2105831273}
