@@ -212,6 +212,9 @@ public class Diglet : MonoBehaviour {
 
     // trackable handler
     public GroundTrackableHandler trackableHandler;
+	
+	// menu
+    public MenuManager menu;
 
     // diglett collider
     public BoxCollider diglettCollider;
@@ -240,19 +243,20 @@ public class Diglet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!trackableHandler.getRenderingStarted() || trackableHandler.getRenderingStopped()) {
-			return;
-		}
+        if (!trackableHandler.GetRenderingStarted() || trackableHandler.GetRenderingStopped() || menu.GetStopGame())
+            return;
 
         state = state.update();
 	}
 
 	// hit the diglet
 	public void Hit() {
+        // TODO: check if collider is working properly and if this is needed or not
+        // diglettCollider.enabled = false;
 
-		// this check shouldnt be needed
-		// but just to be sure...
-		if (state.GetType() == typeof(IdleTop)) {
+        // this check shouldnt be needed
+        // but just to be sure...
+        if (state.GetType() == typeof(IdleTop)) {
 			state = state.next();
 		}
 	}

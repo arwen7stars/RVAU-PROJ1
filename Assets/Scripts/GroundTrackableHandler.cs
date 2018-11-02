@@ -27,12 +27,12 @@ public class GroundTrackableHandler : DefaultTrackableEventHandler
         renderingStopped = true;
     }
 
-    public bool getRenderingStarted()
+    public bool GetRenderingStarted()
     {
         return renderingStarted;
     }
 
-    public bool getRenderingStopped()
+    public bool GetRenderingStopped()
     {
         return renderingStopped;
     }
