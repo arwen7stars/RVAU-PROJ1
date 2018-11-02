@@ -25,6 +25,11 @@ public class HammerHandler : MonoBehaviour {
         Debug.Log(collider.gameObject.tag);
 
         if (collider.gameObject.tag == DIGLETT_TAG)
-            score.incrementScore();
+        {
+            if (collider.gameObject.GetComponent<Diglet>().Hit()) {
+                GetComponent<AudioSource>().Play();
+                score.incrementScore();
+            }
+        }
     }
 }
