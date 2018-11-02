@@ -22,14 +22,11 @@ public class HammerHandler : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log(collider.gameObject.tag);
-
         if (collider.gameObject.tag == DIGLETT_TAG)
         {
-            if (collider.gameObject.GetComponent<Diglet>().Hit()) {
-                GetComponent<AudioSource>().Play();
-                score.incrementScore();
-            }
+            collider.gameObject.GetComponent<Diglet>().Hit();
+            GetComponent<AudioSource>().Play();
+            score.incrementScore();
         }
     }
 }

@@ -64,22 +64,18 @@ public class Diglet : MonoBehaviour {
 
 			// ascend time already calculated
 			if (ascendTime >= 0) {
-				Debug.Log("ascend time already calculated");
 				// should ascend now
 				if ((Time.time - currentSecond) * 1000 >= ascendTime) {
-					Debug.Log("ascending");
 					return next();
 				}
 			}
 			// ascend time still not calculated
 			else if (currentSecond > lastCheck) {
-				Debug.Log("calculating ascending chance");
 				lastCheck = currentSecond;
 				int chance = Random.Range(0, 100);
 
 				// if diglet should ascend
 				if (chance < diglet.currentChance) {
-					Debug.Log("calculating ascend time");
 					// random position (ms) in this second to ascend
 					ascendTime = Random.Range(0, 1000);
 				}
@@ -98,7 +94,6 @@ public class Diglet : MonoBehaviour {
 		{
 			diglet.currentUptime = 0;
 			diglet.diglettCollider.enabled = true;
-			diglet.hit = false;
         }
 
         public override State next()
@@ -232,16 +227,12 @@ public class Diglet : MonoBehaviour {
 
 	// current chance of diglet ascending
 	private float currentChance;
-
-	// true if diglet was hit during this loop
-	private bool hit;
 	
 
 	// Use this for initialization
 	void Start () {
 		
 		diglettCollider.enabled = false;
-		hit = false;
 		currentChance = CHANCE;
 		state = new IdleBot(this);
 	}
@@ -249,20 +240,20 @@ public class Diglet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!trackableHandler.getRenderingStarted() || trackableHandler.getRenderingStopped())
-            return;
+        if (!trackableHandler.getRenderingStarted() || trackableHandler.getRenderingStopped()) {
+			return;
+		}
 
         state = state.update();
 	}
 
 	// hit the diglet
-	public bool Hit() {
-		if (!hit && state.GetType() == typeof(IdleTop)) {
-			hit = true;
-			state.next();
-			return true;
-		}
+	public void Hit() {
 
-		return false;
+		// this check shouldnt be needed
+		// but just to be sure...
+		if (state.GetType() == typeof(IdleTop)) {
+			state = state.next();
+		}
 	}
 }
