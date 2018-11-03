@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour {
 
     public Button normalBtn;
     public Button hardBtn;
+    public Diglet[] digletts;
 
     private bool stopGame = false;
 
@@ -19,6 +20,8 @@ public class MenuManager : MonoBehaviour {
     {
         menu.SetActive(true);
         menuDefault.SetActive(true);
+
+        stopGame = true;
         Time.timeScale = 0;
     }
 
@@ -26,6 +29,8 @@ public class MenuManager : MonoBehaviour {
     {
         menu.SetActive(false);
         menuDefault.SetActive(false);
+
+        stopGame = false;
         Time.timeScale = 1;
     }
 
@@ -33,6 +38,8 @@ public class MenuManager : MonoBehaviour {
     {
         menu.SetActive(false);
         menuDefault.SetActive(false);
+
+        stopGame = false;
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -58,6 +65,12 @@ public class MenuManager : MonoBehaviour {
 
         normalBtn.interactable = false;
         hardBtn.interactable = true;
+
+        for (int i = 0; i < digletts.Length; i++)
+        {
+            float tmpUptime = StaticSettings.setUptime();
+            digletts[i].SetUptime(tmpUptime);
+        }
     }
 
     public void HardDifficulty()
@@ -66,6 +79,12 @@ public class MenuManager : MonoBehaviour {
 
         normalBtn.interactable = true;
         hardBtn.interactable = false;
+
+        for (int i = 0; i < digletts.Length; i++)
+        {
+            float tmpUptime = StaticSettings.setUptime();
+            digletts[i].SetUptime(tmpUptime);
+        }
     }
 
     public void BackToMenu()
@@ -76,6 +95,9 @@ public class MenuManager : MonoBehaviour {
 
     public void ExitGame()
     {
+        stopGame = false;
+        Time.timeScale = 1;
+
         Application.Quit();
     }
 

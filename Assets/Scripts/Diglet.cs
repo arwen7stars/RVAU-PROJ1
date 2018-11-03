@@ -202,10 +202,7 @@ public class Diglet : MonoBehaviour {
     public float MIN_Y;       
 
 	// min y value for diglet                       
-    public float MAX_Y;
-
-	// time spent up (ms)
-	public float UPTIME;        
+    public float MAX_Y;    
 
 	// chance (0 - 100) diglet will ascend (per second)
 	public int CHANCE;
@@ -219,8 +216,11 @@ public class Diglet : MonoBehaviour {
     // diglett collider
     public BoxCollider diglettCollider;
 
-	// current state
-	private State state;    
+    // time spent up (ms)
+    private float UPTIME = StaticSettings.setUptime();
+
+    // current state
+    private State state;    
 
 	// how long (ms) diglet has been up for
 	private int currentUptime;
@@ -244,8 +244,11 @@ public class Diglet : MonoBehaviour {
 	void Update () {
 
         if (!trackableHandler.GetRenderingStarted() || trackableHandler.GetRenderingStopped() || menu.GetStopGame())
+        {
             return;
+        }
 
+        //Debug.Log(UPTIME);
         state = state.update();
 	}
 
@@ -260,4 +263,9 @@ public class Diglet : MonoBehaviour {
 			state = state.next();
 		}
 	}
+
+    public void SetUptime(float uptime)
+    {
+        this.UPTIME = uptime;
+    }
 }

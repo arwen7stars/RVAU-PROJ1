@@ -6,7 +6,7 @@ using Vuforia;
 public class GroundTrackableHandler : DefaultTrackableEventHandler
 {
     private bool renderingStarted = false;
-    private bool renderingStopped = false;
+    private bool renderingStopped = true;
 
     protected override void OnTrackingFound()
     {

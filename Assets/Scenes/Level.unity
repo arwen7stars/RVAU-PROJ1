@@ -948,6 +948,16 @@ MonoBehaviour:
   menuDifficulty: {fileID: 237070844}
   normalBtn: {fileID: 89339593}
   hardBtn: {fileID: 675071439}
+  digletts:
+  - {fileID: 216572801}
+  - {fileID: 665496992}
+  - {fileID: 320730239}
+  - {fileID: 612672089}
+  - {fileID: 1752653816}
+  - {fileID: 2105831275}
+  - {fileID: 1358209014}
+  - {fileID: 1270935547}
+  - {fileID: 2024651137}
 --- !u!114 &367557279
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,8 +22,11 @@ public class TimerManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         if (!trackableGame.GetRenderingStarted() || trackableGame.GetRenderingStopped() || menu.GetStopGame())
+        {
             return;
+        }
 
         if (timeLeft <= 0)
         {

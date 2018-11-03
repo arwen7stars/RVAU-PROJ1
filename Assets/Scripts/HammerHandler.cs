@@ -30,7 +30,9 @@ public class HammerHandler : MonoBehaviour {
     void OnTriggerEnter(Collider collider)
     {
         if (!trackableHandler.GetRenderingStarted() || trackableHandler.GetRenderingStopped() || menu.GetStopGame())
+        {
             return;
+        }
 
         if (collider.gameObject.tag == DIGLETT_TAG)
         {
