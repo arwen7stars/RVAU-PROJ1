@@ -1,21 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
+    
+    // menu object with overlay
     public GameObject menu;
 
+    // main menu options (continue, restart, difficulty, exit)
     public GameObject menuDefault;
+
+    // difficulty options (normal, hard, back)
     public GameObject menuDifficulty;
 
+    // button corresponding to normal difficulty
     public Button normalBtn;
+
+    // button corresponding to hard difficulty
     public Button hardBtn;
+
+    // digletts on the scene
     public Diglet[] digletts;
 
+    // game is stopped or not due to menu
     private bool stopGame = false;
 
+    // open main menu
     public void OpenMenu()
     {
         menu.SetActive(true);
@@ -25,6 +35,7 @@ public class MenuManager : MonoBehaviour {
         Time.timeScale = 0;
     }
 
+    // continue game
     public void Continue()
     {
         menu.SetActive(false);
@@ -34,6 +45,7 @@ public class MenuManager : MonoBehaviour {
         Time.timeScale = 1;
     }
 
+    // restart game
     public void RestartGame()
     {
         menu.SetActive(false);
@@ -44,6 +56,7 @@ public class MenuManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    // show difficulty options
     public void Difficulty()
     {
         menuDefault.SetActive(false);
@@ -59,6 +72,7 @@ public class MenuManager : MonoBehaviour {
         }
     }
 
+    // player chose normal difficulty
     public void NormalDifficulty()
     {
         StaticSettings.changeDifficulty(StaticSettings.NORMAL);
@@ -73,6 +87,7 @@ public class MenuManager : MonoBehaviour {
         }
     }
 
+    // player chose hard difficulty
     public void HardDifficulty()
     {
         StaticSettings.changeDifficulty(StaticSettings.HARD);
@@ -87,12 +102,14 @@ public class MenuManager : MonoBehaviour {
         }
     }
 
+    // back to main menu
     public void BackToMenu()
     {
         menuDefault.SetActive(true);
         menuDifficulty.SetActive(false);
     }
 
+    // exit game
     public void ExitGame()
     {
         stopGame = false;
@@ -101,6 +118,7 @@ public class MenuManager : MonoBehaviour {
         Application.Quit();
     }
 
+    // checks if game stopped due to menu being shown or not
     public bool GetStopGame()
     {
         return stopGame;

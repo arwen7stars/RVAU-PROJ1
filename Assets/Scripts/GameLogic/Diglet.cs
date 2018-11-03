@@ -243,7 +243,7 @@ public class Diglet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!trackableHandler.GetRenderingStarted() || trackableHandler.GetRenderingStopped() || menu.GetStopGame())
+        if (!trackableHandler.GetRendering() || menu.GetStopGame())
         {
             return;
         }
@@ -254,8 +254,7 @@ public class Diglet : MonoBehaviour {
 
 	// hit the diglet
 	public void Hit() {
-        // TODO: check if collider is working properly and if this is needed or not
-        // diglettCollider.enabled = false;
+        diglettCollider.enabled = false;
 
         // this check shouldnt be needed
         // but just to be sure...

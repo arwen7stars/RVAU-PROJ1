@@ -1,18 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class TimerManager : MonoBehaviour {
-    public GroundTrackableHandler trackableGame;
-    public MenuManager menu;
-    public TextMeshProUGUI textTimer;
+
+    // timer in seconds
     public const int TIMER_SECONDS = 60;
 
+    // timer text UI
+    public TextMeshProUGUI textTimer;
+
+    // if the game platform isn't being shown, not update timer
+    public GroundTrackableHandler trackableGame;
+
+    // if menu is being shown, not update timer
+    public MenuManager menu;
+
+    // to get score after timer runs out
+    public ScoreManager score;
+
+    // how much time left in the timer
     private int timeLeft;
+
+    // timer aux
     private float tmpTime;
+
+    // minutes in string
     private string minutes;
+
+    // seconds in string
     private string seconds;
+
+    // if score has been saved or not
+    private bool savedScore = false;
 
     // Use this for initialization
     void Start () {
@@ -23,14 +42,20 @@ public class TimerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!trackableGame.GetRenderingStarted() || trackableGame.GetRenderingStopped() || menu.GetStopGame())
+        if (!trackableGame.GetRendering() || menu.GetStopGame())
         {
             return;
         }
 
-        if (timeLeft <= 0)
+        if (timeLeft <= 0)                                     // game ends if timer is over
         {
-            Debug.Log("finished");
+            if (!savedScore)
+            {
+                int finalScore = score.GetScore();             // get final score on this match
+                PlayerHighscore.AddScore(finalScore);          // update high scores' table
+
+                savedScore = true;
+            }
         } else
         {
             convertTime();
@@ -38,6 +63,7 @@ public class TimerManager : MonoBehaviour {
         }
     }
 
+    // Convert timeLeft to minutes and seconds
     private void convertTime()
     {
         tmpTime -= Time.deltaTime;

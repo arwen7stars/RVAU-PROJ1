@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HammerHandler : MonoBehaviour {
+
+    // hammer collider
     public BoxCollider hammerCollider;
+
+    // digletts' colliders
     public BoxCollider[] moleColliders;
 
     // score manager
@@ -14,22 +18,15 @@ public class HammerHandler : MonoBehaviour {
 
     // menu
     public MenuManager menu;
-
+    
+    // diglett tag
     private const string DIGLETT_TAG = "Diglett";
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+    // if there is a collision with the hammer's collider
     void OnTriggerEnter(Collider collider)
     {
-        if (!trackableHandler.GetRenderingStarted() || trackableHandler.GetRenderingStopped() || menu.GetStopGame())
+        // if platform isn't being rendered or menu is being shown, ignore collison
+        if (!trackableHandler.GetRendering() || menu.GetStopGame())
         {
             return;
         }

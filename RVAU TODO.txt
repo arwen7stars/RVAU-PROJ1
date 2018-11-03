@@ -1,6 +1,5 @@
 Missing:
 - Add START MENU ! (Play, Scores, Difficulty, Exit)
-- Add DIFFICULTIES to game!
 - Save SCORES !
 - Go back to start menu after timer is OVER !!
 - Check if COLLIDER is working properly !
