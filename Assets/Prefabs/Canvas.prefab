@@ -1413,6 +1413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textScore: {fileID: 114657287253974088}
+  highScoreMsg: {fileID: 0}
 --- !u!114 &114806731951760120
 MonoBehaviour:
   m_ObjectHideFlags: 1
