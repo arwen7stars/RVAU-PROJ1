@@ -207,11 +207,17 @@ public class Diglet : MonoBehaviour {
 	// chance (0 - 100) diglet will ascend (per second)
 	public int CHANCE;
 
-    // trackable handler
-    public GroundTrackableHandler trackableHandler;
-	
-	// menu
+    // if the game platform isn't being shown, don't update
+    public TrackableHandler platform;
+
+    // if the hammer isn't being shown, don't update
+    public TrackableHandler hammer;
+
+    // menu
     public MenuManager menu;
+
+    // if game hasn't started, don't update
+    public Tutorial gameStart;
 
     // to check if game is over
     public TimerManager timer;
@@ -245,11 +251,11 @@ public class Diglet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // if game hasn't started or if game is over, ignore
+        if (!gameStart.GetGameStart() || timer.GetGameOver()) return;
 
-        if (!trackableHandler.GetRendering() || menu.GetStopGame() || timer.GetGameOver())
-        {
-            return;
-        }
+        if (!platform.GetRendering() || !hammer.GetRendering() || menu.GetStopGame()) return;
+    
 
         //Debug.Log(UPTIME);
         state = state.update();
@@ -257,7 +263,7 @@ public class Diglet : MonoBehaviour {
 
 	// hit the diglet
 	public void Hit() {
-        diglettCollider.enabled = false;
+        //diglettCollider.enabled = false;
 
         // this check shouldnt be needed
         // but just to be sure...
