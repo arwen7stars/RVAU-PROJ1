@@ -257,16 +257,14 @@ public class Diglet : MonoBehaviour {
         // if game hasn't started or if game is over, ignore
         if (!gameStart.GetGameStart() || timer.GetGameOver()) return;
 
+        // if the game platform or hammer isn't being rendered or menu is being shown, stop updating
         if (!platform.GetRendering() || !hammer.GetRendering() || menu.GetStopGame()) return;
     
-
-        //Debug.Log(UPTIME);
         state = state.update();
 	}
 
 	// hit the diglet
 	public void Hit() {
-
 
         // this check shouldnt be needed
         // but just to be sure...
