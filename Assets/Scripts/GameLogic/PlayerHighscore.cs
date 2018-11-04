@@ -29,8 +29,8 @@ public class PlayerHighscore : MonoBehaviour {
 
                 List<int> highScores = RemoveDuplicates(loadedScores);
 
-                loadedScores.Sort();                        // sort scores
-                loadedScores.Reverse();
+                highScores.Sort();                        // sort scores
+                highScores.Reverse();
 
                 int listSize = SCORES_SIZE;
                 if (highScores.Count <= SCORES_SIZE)        // no more than 5 high scores
@@ -50,28 +50,6 @@ public class PlayerHighscore : MonoBehaviour {
         }
     }
 
-    // Store score on player prefs
-    public static void StoreScores(int score)
-    {
-        List<int> loadedScores = LoadScores();
-
-        if (loadedScores.Count > 0)
-        {
-            loadedScores.Add(score);
-            loadedScores.Sort();
-
-            List<int> highScores = RemoveDuplicates(loadedScores);
-
-            for (int i = 0; i < highScores.Count; i++)
-            {
-                PlayerPrefs.SetInt(KEY_PREFIX + i, highScores[i]);
-            }
-        } else
-        {
-            PlayerPrefs.SetInt(KEY_PREFIX + 0, score);
-        }
-    }
-
     // Get scores' list
     public static List<int> LoadScores()
     {
@@ -86,7 +64,6 @@ public class PlayerHighscore : MonoBehaviour {
             }
         }
 
-        scores.Reverse();
         return scores;
     }
 

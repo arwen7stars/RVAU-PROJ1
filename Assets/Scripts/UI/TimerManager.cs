@@ -45,6 +45,9 @@ public class TimerManager : MonoBehaviour {
     // int corresponding to start menu scene
     private const int START_MENU_SCENE = 0;
 
+    // check if game over
+    private bool gameOver = false;
+
     // Use this for initialization
     void Start () {
         timeLeft = TIMER_SECONDS;
@@ -54,7 +57,7 @@ public class TimerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!trackableGame.GetRendering() || menu.GetStopGame())
+        if (!trackableGame.GetRendering() || menu.GetStopGame() || gameOver)
         {
             return;
         }
@@ -67,6 +70,7 @@ public class TimerManager : MonoBehaviour {
                 PlayerHighscore.AddScore(finalScore);          // update high scores' table
 
                 savedScore = true;
+                gameOver = true;
                 StartCoroutine(ShowTimerOverMsg());
             }
         } else
@@ -103,5 +107,10 @@ public class TimerManager : MonoBehaviour {
 
         if (secondsInt < 10) { seconds = "0" + secondsInt; }
         else { seconds = secondsInt.ToString(); }
+    }
+
+    public bool GetGameOver()
+    {
+        return gameOver;
     }
 }

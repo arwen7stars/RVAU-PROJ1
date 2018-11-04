@@ -18,7 +18,10 @@ public class HammerHandler : MonoBehaviour {
 
     // menu
     public MenuManager menu;
-    
+
+    // to check if game is over
+    public TimerManager timer;
+
     // diglett tag
     private const string DIGLETT_TAG = "Diglett";
 
@@ -26,7 +29,7 @@ public class HammerHandler : MonoBehaviour {
     void OnTriggerEnter(Collider collider)
     {
         // if platform isn't being rendered or menu is being shown, ignore collison
-        if (!trackableHandler.GetRendering() || menu.GetStopGame())
+        if (!trackableHandler.GetRendering() || menu.GetStopGame() || timer.GetGameOver())
         {
             return;
         }

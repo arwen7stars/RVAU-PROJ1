@@ -213,6 +213,9 @@ public class Diglet : MonoBehaviour {
 	// menu
     public MenuManager menu;
 
+    // to check if game is over
+    public TimerManager timer;
+
     // diglett collider
     public BoxCollider diglettCollider;
 
@@ -243,7 +246,7 @@ public class Diglet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!trackableHandler.GetRendering() || menu.GetStopGame())
+        if (!trackableHandler.GetRendering() || menu.GetStopGame() || timer.GetGameOver())
         {
             return;
         }

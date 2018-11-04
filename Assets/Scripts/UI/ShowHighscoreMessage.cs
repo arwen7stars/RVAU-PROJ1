@@ -6,6 +6,9 @@ public class ShowHighscoreMessage : MonoBehaviour {
     // game object with highest score message
     public GameObject highscoreMsg;
 
+    // if has already shown highest score message on this match
+    private bool messageShown = false;
+
     // time showing message
     private const float SHOWING_MSG = 2.0f;
 
@@ -15,12 +18,15 @@ public class ShowHighscoreMessage : MonoBehaviour {
     // check if current score is highest score yet
     public void CheckIfHighestScore(int score)
     {
-        if (PlayerPrefs.HasKey(FIRST_SCORE))
+        if (!messageShown)
         {
-            int currHighest = PlayerPrefs.GetInt(FIRST_SCORE);
-            if (score > currHighest)
+            if (PlayerPrefs.HasKey(FIRST_SCORE))
             {
-                StartCoroutine(ShowScoreMsg());
+                int currHighest = PlayerPrefs.GetInt(FIRST_SCORE);
+                if (score > currHighest)
+                {
+                    StartCoroutine(ShowScoreMsg());
+                }
             }
         }
     }
@@ -29,6 +35,7 @@ public class ShowHighscoreMessage : MonoBehaviour {
     IEnumerator ShowScoreMsg()
     {
         highscoreMsg.SetActive(true);
+        messageShown = true;
 
         yield return new WaitForSeconds(SHOWING_MSG);
 
