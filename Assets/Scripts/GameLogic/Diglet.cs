@@ -253,7 +253,7 @@ public class Diglet : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         // if game hasn't started or if game is over, ignore
         if (!gameStart.GetGameStart() || timer.GetGameOver()) return;
 

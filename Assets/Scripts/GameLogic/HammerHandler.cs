@@ -26,6 +26,15 @@ public class HammerHandler : MonoBehaviour
     // diglett tag
     private const string DIGLETT_TAG = "Diglett";
 
+    // prevent multiple collisions
+    private bool isColliding = false;
+
+    // Update is called once per frame
+    void Update()
+    {
+        isColliding = false;
+    }
+
     // if there is a collision with the hammer's collider
     void OnTriggerEnter(Collider collider)
     {
@@ -34,6 +43,10 @@ public class HammerHandler : MonoBehaviour
 
         // if platform isn't being rendered or menu is being shown, ignore collison
         if (!platform.GetRendering() || !hammer.GetRendering() || menu.GetStopGame()) return;
+
+        if (isColliding) return;
+
+        isColliding = true;
 
         Diglet diglett = collider.gameObject.GetComponent<Diglet>();
 
