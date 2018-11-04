@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HammerHandler : MonoBehaviour {
-
-    // hammer collider
-    public BoxCollider hammerCollider;
-
-    // digletts' colliders
-    public BoxCollider[] moleColliders;
+public class HammerHandler : MonoBehaviour
+{
 
     // score manager
     public ScoreManager score;
@@ -36,31 +31,19 @@ public class HammerHandler : MonoBehaviour {
     {
         // if game hasn't started or if game is over, ignore
         if (!gameStart.GetGameStart() || timer.GetGameOver()) return;
-        
+
         // if platform isn't being rendered or menu is being shown, ignore collison
         if (!platform.GetRendering() || !hammer.GetRendering() || menu.GetStopGame()) return;
 
-        Vector3 direction = collider.gameObject.transform.position - transform.position;
-        if (Vector3.Dot(transform.forward, direction) > 0)
-        {
-            Debug.Log("Back");
-        }
-        if (Vector3.Dot(transform.forward, direction) < 0)
-        {
-            Debug.Log("Front");
-        }
-        if (Vector3.Dot(transform.forward, direction) == 0)
-        {
-            Debug.Log("Side");
-        }
+        Diglet diglett = collider.gameObject.GetComponent<Diglet>();
 
-        if (collider.gameObject.tag == DIGLETT_TAG)
+        if (collider.gameObject.tag == DIGLETT_TAG && !diglett.isHit())
         {
-            collider.gameObject.GetComponent<Diglet>().Hit();
-            collider.gameObject.GetComponent<BoxCollider>().enabled = false;
+            diglett.Hit();
 
             GetComponent<AudioSource>().Play();
             score.incrementScore();
         }
     }
+
 }

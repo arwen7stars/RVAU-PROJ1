@@ -99,6 +99,7 @@ public class Diglet : MonoBehaviour {
         public override State next()
         {
 			diglet.diglettCollider.enabled = false;
+            diglet.hit = false;
 			return new Descending(diglet);
         }
 
@@ -239,7 +240,9 @@ public class Diglet : MonoBehaviour {
 
 	// current chance of diglet ascending
 	private float currentChance;
-	
+
+    // diglett has already been hit
+    private bool hit = false;
 
 	// Use this for initialization
 	void Start () {
@@ -263,11 +266,12 @@ public class Diglet : MonoBehaviour {
 
 	// hit the diglet
 	public void Hit() {
-        //diglettCollider.enabled = false;
+
 
         // this check shouldnt be needed
         // but just to be sure...
         if (state.GetType() == typeof(IdleTop)) {
+            hit = true;
 			state = state.next();
 		}
 	}
@@ -275,5 +279,10 @@ public class Diglet : MonoBehaviour {
     public void SetUptime(float uptime)
     {
         this.UPTIME = uptime;
+    }
+
+    public bool isHit()
+    {
+        return hit;
     }
 }

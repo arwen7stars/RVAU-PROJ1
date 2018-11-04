@@ -37,7 +37,7 @@ public class Tutorial : MonoBehaviour {
         {
             if (!messageShown)
             {
-                GetComponent<AudioSource>().Play();     // play found items sound!
+                GetComponent<AudioSource>().Play();     // play main theme!
 
                 messageShown = true;
                 findGame.SetActive(false);
