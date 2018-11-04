@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TimerManager : MonoBehaviour {
 
@@ -30,8 +33,17 @@ public class TimerManager : MonoBehaviour {
     // seconds in string
     private string seconds;
 
+    // game object with timer over message
+    public GameObject timerOverMsg;
+
+    // time showing message
+    private const float SHOWING_MSG = 3.0f;
+
     // if score has been saved or not
     private bool savedScore = false;
+
+    // int corresponding to start menu scene
+    private const int START_MENU_SCENE = 0;
 
     // Use this for initialization
     void Start () {
@@ -55,12 +67,26 @@ public class TimerManager : MonoBehaviour {
                 PlayerHighscore.AddScore(finalScore);          // update high scores' table
 
                 savedScore = true;
+                StartCoroutine(ShowTimerOverMsg());
             }
         } else
         {
             convertTime();
             textTimer.text = minutes + ":" + seconds;
         }
+    }
+
+    // show timer over message
+    IEnumerator ShowTimerOverMsg()
+    {
+
+        timerOverMsg.SetActive(true);
+
+        yield return new WaitForSeconds(SHOWING_MSG);
+
+        timerOverMsg.SetActive(false);
+
+        SceneManager.LoadScene(START_MENU_SCENE);
     }
 
     // Convert timeLeft to minutes and seconds

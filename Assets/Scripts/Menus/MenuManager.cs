@@ -25,6 +25,9 @@ public class MenuManager : MonoBehaviour {
     // game is stopped or not due to menu
     private bool stopGame = false;
 
+    // int corresponding to start menu scene
+    private const int START_MENU_SCENE = 0;
+
     // open main menu
     public void OpenMenu()
     {
@@ -115,11 +118,7 @@ public class MenuManager : MonoBehaviour {
         stopGame = false;
         Time.timeScale = 1;
 
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        SceneManager.LoadScene(START_MENU_SCENE);
     }
 
     // checks if game stopped due to menu being shown or not

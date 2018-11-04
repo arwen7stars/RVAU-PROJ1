@@ -1,41 +1,107 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerHighscore : MonoBehaviour {
 
     // Highscores' list max size
     private const int SCORES_SIZE = 5;
 
-    // Highscores' list
-    private static List<int> highScores = new List<int>();
+    // key prefix for highscores
+    private const string KEY_PREFIX = "highscore";
 
     void Awake()
     {
         DontDestroyOnLoad(this);
     }
 
-    // Add score to highscores' list (if it's high enough)
+    // Add score to highscores' list
     public static void AddScore(int score)
     {
-        highScores.Add(score);
-        highScores.Sort();
-        highScores.Reverse();
+        if (score > 0)
+        {
+            List<int> loadedScores = LoadScores();
 
-        StoreScores();
+            if (loadedScores.Count > 0)
+            {
+                loadedScores.Add(score);                    // add new score to list of loaded scores
+
+                List<int> highScores = RemoveDuplicates(loadedScores);
+
+                loadedScores.Sort();                        // sort scores
+                loadedScores.Reverse();
+
+                int listSize = SCORES_SIZE;
+                if (highScores.Count <= SCORES_SIZE)        // no more than 5 high scores
+                {
+                    listSize = highScores.Count;
+                }
+
+                for (int i = 0; i < listSize; i++)
+                {
+                    PlayerPrefs.SetInt(KEY_PREFIX + i, highScores[i]);
+                }
+            }
+            else
+            {
+                PlayerPrefs.SetInt(KEY_PREFIX + 0, score);
+            }
+        }
     }
 
     // Store score on player prefs
-    public static void StoreScores()
+    public static void StoreScores(int score)
     {
-        int listSize = SCORES_SIZE;
-        if (highScores.Count <= SCORES_SIZE)
+        List<int> loadedScores = LoadScores();
+
+        if (loadedScores.Count > 0)
         {
-            listSize = highScores.Count;
+            loadedScores.Add(score);
+            loadedScores.Sort();
+
+            List<int> highScores = RemoveDuplicates(loadedScores);
+
+            for (int i = 0; i < highScores.Count; i++)
+            {
+                PlayerPrefs.SetInt(KEY_PREFIX + i, highScores[i]);
+            }
+        } else
+        {
+            PlayerPrefs.SetInt(KEY_PREFIX + 0, score);
+        }
+    }
+
+    // Get scores' list
+    public static List<int> LoadScores()
+    {
+        List<int> scores = new List<int>();
+
+        for (int i = 0; i < SCORES_SIZE; i++)
+        {
+            if(PlayerPrefs.HasKey(KEY_PREFIX + i))
+            {
+                int currScore = PlayerPrefs.GetInt(KEY_PREFIX + i);
+                scores.Add(currScore);
+            }
         }
 
-        for (int i = 0; i < listSize; i++) {
-            PlayerPrefs.SetInt("High Scores " + i, highScores[i]);
+        scores.Reverse();
+        return scores;
+    }
+
+    public static List<int> RemoveDuplicates(List<int> list)
+    {
+        List<int> unique = new List<int>();
+
+        foreach (int item in list)
+        {
+            if (!unique.Any(x => x.Equals(item)))
+            {
+                unique.Add(item);
+            }
         }
+
+        return unique;
     }
 }

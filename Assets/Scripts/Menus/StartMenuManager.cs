@@ -10,7 +10,10 @@ public class StartMenuManager : MonoBehaviour {
     public GameObject defaultMenu;
 
     // high scores screen
-    public GameObject highScores;
+    public GameObject highScoresMenu;
+
+    // get high scores
+    public HighScores highScores;
 
     // difficultymenu
     public GameObject difficultyMenu;
@@ -23,7 +26,6 @@ public class StartMenuManager : MonoBehaviour {
 
     // int corresponding to level scene
     private const int LEVEL_SCENE = 1;
-
 
     public void PlayGame()
     {
@@ -77,14 +79,16 @@ public class StartMenuManager : MonoBehaviour {
     public void HighScores()
     {
         defaultMenu.SetActive(false);
-        highScores.SetActive(true);
+        highScoresMenu.SetActive(true);
+
+        highScores.ShowScores();
     }
 
     // back to main menu from high scores
     public void BackToMenuFromHighscores()
     {
         defaultMenu.SetActive(true);
-        highScores.SetActive(false);
+        highScoresMenu.SetActive(false);
     }
 
     // exit game

@@ -1,8 +1,7 @@
 Missing:
-- Add START MENU ! (Play, Scores, Difficulty, Exit)
-- Go back to start menu after timer is OVER !!
 - Add external elements to GAME ! (such as GPS location)
 
 Testing:
 - Check if COLLIDER is working properly !
 - Check if SHADOWS are being rendered properly !
+- Check if SCORE are working properly !

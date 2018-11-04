@@ -9,15 +9,15 @@ public class ShowHighscoreMessage : MonoBehaviour {
     // time showing message
     private const float SHOWING_MSG = 2.0f;
 
-    // time left to show message
-    private float timeLeft = SHOWING_MSG;
+    // first score key
+    private const string FIRST_SCORE = "highscore0";
 
     // check if current score is highest score yet
     public void CheckIfHighestScore(int score)
     {
-        if (PlayerPrefs.HasKey("High Scores 0"))
+        if (PlayerPrefs.HasKey(FIRST_SCORE))
         {
-            int currHighest = PlayerPrefs.GetInt("High Scores 0");
+            int currHighest = PlayerPrefs.GetInt(FIRST_SCORE);
             if (score > currHighest)
             {
                 StartCoroutine(ShowScoreMsg());
@@ -28,18 +28,10 @@ public class ShowHighscoreMessage : MonoBehaviour {
     // show score message
     IEnumerator ShowScoreMsg()
     {
-        bool showingMsg = false;
-        while (timeLeft > 0)
-        {
-            if (!showingMsg)
-            {
-                highscoreMsg.SetActive(true);
-            }
-            timeLeft -= Time.deltaTime;
-        }
-        highscoreMsg.SetActive(false);
-        timeLeft = SHOWING_MSG;
+        highscoreMsg.SetActive(true);
 
-        yield return null;
+        yield return new WaitForSeconds(SHOWING_MSG);
+
+        highscoreMsg.SetActive(false);
     }
 }
