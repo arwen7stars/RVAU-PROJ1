@@ -1,7 +1,0 @@
-Missing:
-- Add external elements to GAME ! (such as GPS location)
-- Correct SHADOWS on new phone (Edit -> Project Settings -> Quality)
-
-Testing:
-- Check if COLLIDER is working properly !
-- Check if SHADOWS are being rendered properly !
