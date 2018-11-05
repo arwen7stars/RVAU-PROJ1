@@ -17,6 +17,9 @@ public class GPSLocation : MonoBehaviour {
     // longitude
     private float longitude;
 
+    // time between fetchs of gps location
+    private const int WAITING_TIME = 3;
+
     // Use this for initialization
     void Start () {
         StartCoroutine(GetGPSLocation());
@@ -60,10 +63,10 @@ public class GPSLocation : MonoBehaviour {
                 latitude = Input.location.lastData.latitude;
                 longitude = Input.location.lastData.longitude;
            
-                Debug.Log("!!!!! Location: " + latitude + " " + longitude);
-
                 string location = "Location: (" + latitude + ", " + longitude + ")";
-                textLocation.text = location; 
+                textLocation.text = location;
+
+                yield return new WaitForSeconds(WAITING_TIME);
             }
         }
     }
